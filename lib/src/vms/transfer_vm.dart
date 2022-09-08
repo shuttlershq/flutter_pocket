@@ -59,7 +59,7 @@ class FundRequestVm extends ChangeNotifier {
   Future<void> queryStatus({String? id}) async {
     setState(ViewState.awaitingStatus);
     TxnStatusRequestResponse response = await transferService
-        .reQueryTransaction(_txnStatusData?.requestId ?? id!);
+        .reQueryTransaction(_requestData?.requestId?.toString() ?? id!);
     if (response.statusData!.requestStatus!.toLowerCase() == 'accepted') {
       setState(ViewState.statusRetrieved);
     } else {
