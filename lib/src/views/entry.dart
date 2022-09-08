@@ -6,12 +6,14 @@ import '../models/models.dart';
 class FlutterPocket {
   BuildContext context;
   String key;
+  String baseUrl;
   TransferRequestBody body;
 
   FlutterPocket({
     required this.context,
     required this.key,
     required this.body,
+    required this.baseUrl,
   }) : assert(key.isNotEmpty);
 
   /// Starts pocket payment
@@ -22,6 +24,7 @@ class FlutterPocket {
         builder: (context) => PocketView(
           pocketKey: key,
           body: body,
+          baseUrl: baseUrl,
         ),
       ),
     );

@@ -33,9 +33,10 @@ class FundRequestVm extends ChangeNotifier {
   FundRequestVm({
     TransferServiceContract? transferService,
     String? key,
+    String? baseUrl,
   }) : assert((transferService != null && key == null) ||
             (transferService == null && key != null)) {
-    this.transferService = transferService ?? TransferService(key!);
+    this.transferService = transferService ?? TransferService(key!, baseUrl!);
   }
 
   // call transfer request

@@ -6,9 +6,14 @@ import '../vms/transfer_vm.dart';
 
 class PocketView extends StatefulWidget {
   final String pocketKey;
+  final String baseUrl;
   final TransferRequestBody body;
-  const PocketView({Key? key, required this.pocketKey, required this.body})
-      : super(key: key);
+  const PocketView({
+    Key? key,
+    required this.pocketKey,
+    required this.body,
+    required this.baseUrl,
+  }) : super(key: key);
 
   @override
   State<PocketView> createState() => _PocketViewState();
@@ -19,7 +24,9 @@ class _PocketViewState extends State<PocketView> {
 
   @override
   void initState() {
-    vm = FundRequestVm(key: widget.pocketKey);
+    vm = FundRequestVm(
+      key: widget.pocketKey,
+    );
     vm.addListener(() {
       if (mounted) setState(() {});
     });

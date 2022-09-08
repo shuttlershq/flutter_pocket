@@ -11,13 +11,17 @@ import 'package:http/http.dart' as http;
 
 class TransferService with BaseApiService implements TransferServiceContract {
   String key;
-  TransferService(this.key);
+  String url;
+  TransferService(
+    this.key,
+    this.url,
+  );
   @override
   Future<TransferRequestResponse> transferRequest(
       Map<String, dynamic> fields) async {
     try {
       headers.putIfAbsent('Authorization', () => 'Bearer $key');
-      String url = '$baseUrl/transfer/request/abeg';
+      String url = '${this.url}/pocket/initialize';
       http.Response response = await http.post(Uri.parse(url),
           body: jsonEncode(fields), headers: headers);
       var body = response.body;
@@ -45,7 +49,7 @@ class TransferService with BaseApiService implements TransferServiceContract {
   Future<TxnStatusRequestResponse> reQueryTransaction(String id) async {
     try {
       headers.putIfAbsent('Authorization', () => 'Bearer $key');
-      String url = '$baseUrl/transfer/request/abeg/$id';
+      String url = '${this.url}/pocket/transaction/$id';
 
       http.Response response = await http.get(Uri.parse(url), headers: headers);
       var body = response.body;

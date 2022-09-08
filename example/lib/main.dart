@@ -41,10 +41,11 @@ class _MyHomePageState extends State<MyHomePage> {
       tag: tag!,
     );
     final payment = FlutterPocket(
-      body: body,
-      context: context,
-      key: 'ENTER_YOUR_KEY_HERE',
-    );
+        body: body,
+        context: context,
+        key: 'ENTER_YOUR_KEY_HERE',
+        baseUrl:
+            'https://rllwjl4z6b.execute-api.eu-central-1.amazonaws.com/api/v1');
     await payment.pay();
   }
 
