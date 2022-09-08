@@ -26,6 +26,7 @@ class _PocketViewState extends State<PocketView> {
   void initState() {
     vm = FundRequestVm(
       key: widget.pocketKey,
+      baseUrl: widget.baseUrl,
     );
     vm.addListener(() {
       if (mounted) setState(() {});
