@@ -31,12 +31,10 @@ class FundRequestVm extends ChangeNotifier {
   StatusData? get txnStatusData => _txnStatusData;
 
   FundRequestVm({
-    TransferServiceContract? transferService,
-    String? key,
-    String? baseUrl,
-  }) : assert((transferService != null && key == null) ||
-            (transferService == null && key != null)) {
-    this.transferService = transferService ?? TransferService(key!, baseUrl!);
+    required String key,
+    required String baseUrl,
+  }) {
+    transferService = TransferService(key, baseUrl);
   }
 
   // call transfer request
