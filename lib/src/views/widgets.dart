@@ -14,7 +14,7 @@ class InfoUpdateState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -62,7 +62,14 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: Text(label),
+      child: Text(
+        label,
+        style: const TextStyle(
+          color: Color(0xFF000005),
+          fontWeight: FontWeight.w700,
+          fontSize: 16,
+        ),
+      ),
       style: TextButton.styleFrom(
         primary: Colors.transparent,
         backgroundColor: Colors.transparent,
