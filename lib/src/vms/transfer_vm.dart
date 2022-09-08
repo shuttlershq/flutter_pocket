@@ -30,6 +30,9 @@ class FundRequestVm extends ChangeNotifier {
   StatusData? _txnStatusData;
   StatusData? get txnStatusData => _txnStatusData;
 
+  RequestData? _requestData;
+  RequestData? get requestData => _requestData;
+
   FundRequestVm({
     required String key,
     required String baseUrl,
@@ -43,11 +46,10 @@ class FundRequestVm extends ChangeNotifier {
       setState(ViewState.loading);
       TransferRequestResponse response =
           await transferService.transferRequest(body.toJson());
+      _requestData = response.statusData;
       setState(ViewState.loaded);
-      Timer.periodic(
-          const Duration(seconds: 10),
-          (Timer t) =>
-              queryStatus(id: response.statusData!.requestId.toString()));
+      Timer.periodic(const Duration(seconds: 10),
+          (Timer t) => queryStatus(id: _requestData!.requestId.toString()));
     } catch (e) {
       setState(ViewState.error);
     }
