@@ -24,6 +24,8 @@ class _PocketViewState extends State<PocketView> {
 
   @override
   void initState() {
+    print(widget.pocketKey);
+    print(widget.baseUrl);
     vm = FundRequestVm(
       key: widget.pocketKey,
       baseUrl: widget.baseUrl,
