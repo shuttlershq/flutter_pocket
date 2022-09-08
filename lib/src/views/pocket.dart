@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pocket/src/views/widgets.dart';
 
 import '../models/models.dart';
 import '../vms/transfer_vm.dart';
@@ -24,8 +25,6 @@ class _PocketViewState extends State<PocketView> {
 
   @override
   void initState() {
-    print(widget.pocketKey);
-    print(widget.baseUrl);
     vm = FundRequestVm(
       key: widget.pocketKey,
       baseUrl: widget.baseUrl,
@@ -61,16 +60,10 @@ class _PocketViewState extends State<PocketView> {
           }
           if (vm.state == ViewState.loaded) {
             return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text('Request sent!'),
-                  const Text('Accept the payment request on your pocket app'),
-                  TextButton(
-                    onPressed: () => vm.queryStatus(),
-                    child: const Text('I have made payment'),
-                  )
-                ],
+              child: InfoUpdateState(
+                description: 'Request sent!',
+                message: 'Accept the payment request on your pocket app',
+                onReload: vm.queryStatus,
               ),
             );
           }
