@@ -38,8 +38,7 @@ class TransferService with BaseApiService implements TransferServiceContract {
         case HttpStatus.unauthorized:
           Map<String, dynamic> responseBody = json.decode(body);
           var response = TransferRequestResponse.fromJson(responseBody);
-          throw AuthenticationException(
-              response.message ?? 'Unauthorized access');
+          throw PatronizeException(response.message ?? 'Unauthorized access');
         default:
           throw PatronizeException(message ?? 'Unknown server response');
       }

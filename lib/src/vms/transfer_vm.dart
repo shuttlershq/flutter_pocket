@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/models.dart';
 import '../service/service.dart';
+import '../utils/exceptions.dart';
 
 enum ViewState {
   initial,
@@ -51,7 +52,7 @@ class FundRequestVm extends ChangeNotifier {
       Timer.periodic(const Duration(seconds: 10),
           (Timer t) => queryStatus(id: _requestData!.requestId.toString()));
     } catch (e) {
-      _errorMessage = e as String;
+      _errorMessage = (e as PatronizeException).message;
       setState(ViewState.error);
     }
   }
