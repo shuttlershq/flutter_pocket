@@ -51,6 +51,8 @@ class FundRequestVm extends ChangeNotifier {
       Timer.periodic(const Duration(seconds: 10),
           (Timer t) => queryStatus(id: _requestData!.requestId.toString()));
     } catch (e) {
+      print(e);
+      print(e.runtimeType);
       setState(ViewState.error);
     }
   }
