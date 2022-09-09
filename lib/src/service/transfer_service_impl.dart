@@ -19,6 +19,7 @@ class TransferService with BaseApiService implements TransferServiceContract {
   @override
   Future<TransferRequestResponse> transferRequest(
       Map<String, dynamic> fields) async {
+    String? message;
     try {
       headers.putIfAbsent('Authorization', () => 'Bearer $key');
       String url = '${this.url}/pocket/initialize';
@@ -27,6 +28,8 @@ class TransferService with BaseApiService implements TransferServiceContract {
       var body = response.body;
 
       var statusCode = response.statusCode;
+
+      message = json.decode(body)['message'] ?? 'Unknown server response';
 
       switch (statusCode) {
         case HttpStatus.ok:
@@ -38,11 +41,10 @@ class TransferService with BaseApiService implements TransferServiceContract {
           throw AuthenticationException(
               response.message ?? 'Unauthorized access');
         default:
-          throw PatronizeException(
-              json.decode(body)['message'] ?? 'Unknown server response');
+          throw PatronizeException(message ?? 'Unknown server response');
       }
     } catch (e) {
-      throw PatronizeException('Unknown server response');
+      throw PatronizeException(message ?? 'Unknown server response');
     }
   }
 
