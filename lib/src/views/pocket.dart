@@ -85,7 +85,10 @@ class _PocketViewState extends State<PocketView> {
             return Center(
                 child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(vm.error ?? 'An error occurred!'),
+              child: Text(
+                vm.error ?? 'An error occurred!',
+                textAlign: TextAlign.center,
+              ),
             ));
           }
           return const SizedBox.shrink();
