@@ -24,8 +24,8 @@ class FundRequestVm extends ChangeNotifier {
     notifyListeners();
   }
 
-  String? errorMessage;
-  String? get error => errorMessage;
+  String? _errorMessage;
+  String? get error => _errorMessage;
 
   StatusData? _txnStatusData;
   StatusData? get txnStatusData => _txnStatusData;
@@ -51,8 +51,7 @@ class FundRequestVm extends ChangeNotifier {
       Timer.periodic(const Duration(seconds: 10),
           (Timer t) => queryStatus(id: _requestData!.requestId.toString()));
     } catch (e) {
-      print(e);
-      print(e.runtimeType);
+      _errorMessage = e as String;
       setState(ViewState.error);
     }
   }

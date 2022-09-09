@@ -82,7 +82,7 @@ class _PocketViewState extends State<PocketView> {
             Navigator.of(context).pop(vm.txnStatusData);
           }
           if (vm.state == ViewState.error) {
-            return const Center(child: Text('An error occurred!'));
+            return Center(child: Text(vm.error ?? 'An error occurred!'));
           }
           return const SizedBox.shrink();
         }),
