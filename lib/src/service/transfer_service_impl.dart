@@ -38,7 +38,8 @@ class TransferService with BaseApiService implements TransferServiceContract {
           throw AuthenticationException(
               response.message ?? 'Unauthorized access');
         default:
-          throw PatronizeException('Unknown server response');
+          throw PatronizeException(
+              json.decode(body)['message'] ?? 'Unknown server response');
       }
     } catch (e) {
       throw PatronizeException('Unknown server response');
